@@ -19,7 +19,7 @@ go_binary(
 )
 
 pkg_zip(
-    name = "webhook_deploy.zip",
+    name = "deploy.zip",
     visibility = ["//visibility:public"],
     deps = [
         ":webhook",

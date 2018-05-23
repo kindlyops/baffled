@@ -21,3 +21,7 @@ Now you will need to install bazel since it's not pre-installed for CodeBuild
 
     ./install-bazel.sh
     export PATH=$PATH:/root/bin
+
+Reproduce the problem
+
+    bazel build -j 1 --verbose_failures --subcommands --sandbox_debug //webhook:deploy.zip
