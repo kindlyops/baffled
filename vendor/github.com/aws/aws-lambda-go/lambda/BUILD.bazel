@@ -1,0 +1,32 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "entry.go",
+        "function.go",
+        "handler.go",
+        "panic.go",
+    ],
+    importmap = "vendor/github.com/aws/aws-lambda-go/lambda",
+    importpath = "github.com/aws/aws-lambda-go/lambda",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/aws/aws-lambda-go/lambda/messages:go_default_library",
+        "//vendor/github.com/aws/aws-lambda-go/lambdacontext:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "function_test.go",
+        "handler_test.go",
+        "panic_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//vendor/github.com/aws/aws-lambda-go/lambda/messages:go_default_library",
+        "@com_github_stretchr_testify//assert:go_default_library",
+    ],
+)

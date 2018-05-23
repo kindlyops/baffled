@@ -1,0 +1,21 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "jsonblobs.go",
+        "jsoncompare.go",
+        "jsonsyntax.go",
+    ],
+    importmap = "vendor/github.com/aws/aws-lambda-go/events/test",
+    importpath = "github.com/aws/aws-lambda-go/events/test",
+    visibility = ["//visibility:public"],
+    deps = ["@com_github_stretchr_testify//assert:go_default_library"],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["jsoncompare_test.go"],
+    embed = [":go_default_library"],
+    deps = ["@com_github_stretchr_testify//assert:go_default_library"],
+)
