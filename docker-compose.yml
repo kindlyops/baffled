@@ -1,0 +1,9 @@
+version: '2'
+ 
+services:
+  codebuild:
+    working_dir: /home/ec2-user/environment/baffled
+    volumes:
+      - .:/home/ec2-user/environment/baffled
+    image: aws/codebuild/java:openjdk-8
+
