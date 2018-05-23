@@ -1,4 +1,5 @@
 load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+load("//:zip.bzl", "pkg_zip")
 
 go_library(
     name = "go_default_library",
@@ -15,4 +16,12 @@ go_binary(
     name = "webhook",
     embed = [":go_default_library"],
     visibility = ["//visibility:public"],
+)
+
+pkg_zip(
+    name = "webhook_deploy.zip",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":webhook",
+    ],
 )
